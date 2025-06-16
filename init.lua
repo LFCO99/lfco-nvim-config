@@ -5,4 +5,4 @@ require("config.lazy")
 vim.g.python3_host_prog = "/usr/local/bin/python3"
 
 -- Set the colorscheme
-vim.cmd("colorscheme night-owl")
+vim.cmd("colorscheme rose-pine")
