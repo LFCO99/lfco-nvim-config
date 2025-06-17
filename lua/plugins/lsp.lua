@@ -49,31 +49,11 @@ return {
 					},
 				},
 			},
-			jdtls = {
-				cmd = { "jdtls" },
-				root_dir = lspconfig.util.root_pattern(".git", "pom.xml", "build.gradle"),
-				settings = {
-					java = {
-						configuration = {
-							runtimes = {
-								{
-									name = "JavaSE-21",
-									path = "/usr/lib/jvm/java-21-openjdk-amd64",
-								},
-								{
-									name = "JavaSE-17",
-									path = "/usr/lib/jvm/java-17-openjdk-amd64",
-								},
-							},
-						},
-					},
-				},
-			},
 		}
 
 		-- Mason-lspconfig setup
 		local mason_lspconfig = require("mason-lspconfig")
-		local ensure_installed = { "pyright", "lua_ls", "jdtls" }
+		local ensure_installed = { "pyright", "lua_ls", "html" }
 		mason_lspconfig.setup({
 			automatic_enable = true,
 			ensure_installed = ensure_installed,

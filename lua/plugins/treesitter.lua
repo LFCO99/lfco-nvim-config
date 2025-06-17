@@ -10,6 +10,7 @@ return {
 				"java",
 				"javascript",
 				"html",
+				"xml",
 			},
 			modules = {},
 			sync_install = false,
@@ -17,7 +18,6 @@ return {
 			ignore_install = {},
 			highlight = {
 				enable = true,
-				additional_vim_regex_highlighting = false,
 			},
 			indent = {
 				enable = true,
