@@ -49,11 +49,14 @@ return {
 					},
 				},
 			},
+			ts_ls = {},
+			html = {},
+			cssls = {},
 		}
 
 		-- Mason-lspconfig setup
 		local mason_lspconfig = require("mason-lspconfig")
-		local ensure_installed = { "pyright", "lua_ls", "html" }
+		local ensure_installed = { "pyright", "lua_ls", "html", "cssls", "ts_ls" }
 		mason_lspconfig.setup({
 			automatic_enable = true,
 			ensure_installed = ensure_installed,

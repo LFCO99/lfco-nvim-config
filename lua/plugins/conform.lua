@@ -7,6 +7,9 @@ return {
 				python = { "isort", "black" }, -- sort imports, then format with black.
 				lua = { "stylua" }, -- format with stylua
 				java = { "google-java-format" },
+				html = { "prettier" },
+				css = { "prettier" },
+				javascript = { "prettier" },
 			},
 			format_on_save = {
 				timeout_ms = 500, --  Max formatting time
