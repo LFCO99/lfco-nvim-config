@@ -1,10 +1,6 @@
-vim.opt.guicursor = ""
-
 vim.opt.nu = true
 vim.opt.relativenumber = true
-vim.api.nvim_set_hl(0, "LineNr", { fg = "#3cb371" })
-vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#615f50" })
-vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#615f50" })
+
 -- Sets the indentation.
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4

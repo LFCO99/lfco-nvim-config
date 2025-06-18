@@ -52,11 +52,12 @@ return {
 			ts_ls = {},
 			html = {},
 			cssls = {},
+			emmet_language_server = {},
 		}
 
 		-- Mason-lspconfig setup
 		local mason_lspconfig = require("mason-lspconfig")
-		local ensure_installed = { "pyright", "lua_ls", "html", "cssls", "ts_ls" }
+		local ensure_installed = { "pyright", "lua_ls", "html", "cssls", "ts_ls", "emmet_language_server" }
 		mason_lspconfig.setup({
 			automatic_enable = true,
 			ensure_installed = ensure_installed,
