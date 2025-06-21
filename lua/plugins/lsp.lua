@@ -38,6 +38,9 @@ return {
 
 		-- Server setup
 		local lspconfig = require("lspconfig")
+
+		-- Explicitly setup elixirls first
+
 		local servers = {
 			pyright = {
 				settings = {
@@ -56,10 +59,9 @@ return {
 			elixirls = {
 				settings = {
 					elixirLS = {
-						dialyzerEnabled = true, --Enable Dialyzer for type checking
-						fetchDeps = true, --Auto-fetch Mix dependencies
-						suggestSpecs = true, -- Suggest @spec annotations
-						trace = { server = "verbose" }, -- Helpful for debugging LSP issues
+						dialyzerEnabled = true,
+						fetchDeps = false,
+						enableTestLenses = true,
 					},
 				},
 			},
