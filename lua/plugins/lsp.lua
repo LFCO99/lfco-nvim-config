@@ -53,11 +53,21 @@ return {
 			html = {},
 			cssls = {},
 			emmet_language_server = {},
+			elixirls = {
+				settings = {
+					elixirLS = {
+						dialyzerEnabled = true, --Enable Dialyzer for type checking
+						fetchDeps = true, --Auto-fetch Mix dependencies
+						suggestSpecs = true, -- Suggest @spec annotations
+						trace = { server = "verbose" }, -- Helpful for debugging LSP issues
+					},
+				},
+			},
 		}
 
 		-- Mason-lspconfig setup
 		local mason_lspconfig = require("mason-lspconfig")
-		local ensure_installed = { "pyright", "lua_ls", "html", "cssls", "ts_ls", "emmet_language_server" }
+		local ensure_installed = { "pyright", "lua_ls", "html", "cssls", "ts_ls", "emmet_language_server", "elixirls" }
 		mason_lspconfig.setup({
 			automatic_enable = true,
 			ensure_installed = ensure_installed,

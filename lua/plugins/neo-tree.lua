@@ -9,6 +9,14 @@ return {
 	lazy = false,
 	config = function()
 		require("neo-tree").setup({
+			filesystem = {
+				filtered_items = {
+					hide_by_name = {
+						"_build",
+						"deps",
+					},
+				},
+			},
 			event_handlers = {
 				{
 					event = "file_open_requested",

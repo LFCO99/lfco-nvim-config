@@ -10,6 +10,14 @@ return {
 				html = { "prettier" },
 				css = { "prettier" },
 				javascript = { "prettier" },
+				elixi = { "mix_format" },
+			},
+			formatters = {
+				mix_format = {
+					command = "mix",
+					args = { "format", "-" },
+					stdin = true,
+				},
 			},
 			format_on_save = {
 				timeout_ms = 500, --  Max formatting time
