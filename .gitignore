@@ -1,0 +1,9 @@
+# Lazy Package manager
+lazy-lock.json
+
+# OS files
+.DS_Store
+
+
+#Sensitive data 
+.env 
