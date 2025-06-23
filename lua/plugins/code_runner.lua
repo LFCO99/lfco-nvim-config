@@ -6,7 +6,5 @@ return {
 				python = "python3 -u",
 			},
 		})
-
-		vim.keymap.set("n", "<leader>r", ":RunCode<CR>")
 	end,
 }
