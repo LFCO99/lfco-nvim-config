@@ -19,9 +19,7 @@ return {
 			-- Python related
 			"pyright", --LSP
 			"ruff", -- Linter
-			"black", -- Formatter
-			"isort", -- Import sorter
-			"debugpy", -- Debugger
+			-- "debugpy", -- Debugger
 		}
 		for _, tool in ipairs(tools) do
 			if not mason_registry.is_installed(tool) then

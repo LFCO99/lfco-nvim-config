@@ -7,7 +7,7 @@ return {
 		configs.setup({
 			ensure_installed = {
 				"lua",
-				-- "python",
+				"python",
 				-- "java",
 				-- "javascript",
 				-- "html",
@@ -17,6 +17,7 @@ return {
 				-- "elixir",
 				-- "eex",
 				-- "heex",
+				"vimdoc",
 			},
 			modules = {},
 			sync_install = false,

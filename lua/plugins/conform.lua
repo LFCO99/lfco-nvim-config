@@ -4,7 +4,14 @@ return {
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
-				-- python = { "isort", "black", "ruff" }, -- sort imports, then format with black.
+				python = {
+					-- To fix auto-fixable lint errors.
+					"ruff_fix",
+					-- To run the Ruff formatter.
+					"ruff_format",
+					-- To organize the imports
+					"ruff_organize_imports",
+				}, -- sort imports, then format with black.
 				lua = { "stylua" }, -- format with stylua
 				-- java = { "google-java-format" },
 				-- html = { "prettier" },
@@ -12,43 +19,9 @@ return {
 				-- javascript = { "prettier" },
 				-- elixir = { "mix_format" },
 			},
-			-- formatters = {
-			-- 	isort = {
-			-- 		command = "isort",
-			-- 		args = { "--profile", "black", "--line-length", "88", "-" },
-			-- 		stdin = true,
-			-- 		-- use virtualenv's via VIRTUAL_ENV
-			-- 		env = {
-			-- 			VIRTUAL_ENV = function()
-			-- 				if vim.g.python3_host_prog then
-			-- 					return vim.fn.fnamemodify(vim.g.python3_host_prog, ":h:h")
-			-- 				end
-			-- 				return nil
-			-- 			end,
-			-- 		},
-			-- 	},
-			-- 	black = {
-			-- 		command = "black",
-			-- 		args = { "--line-length", "88", "--fast", "-" },
-			-- 		stdin = true,
-			-- 		-- use virtualenv's via VIRTUAL_ENV
-			-- 		env = {
-			-- 			VIRTUAL_ENV = function()
-			-- 				if vim.g.python3_host_prog then
-			-- 					return vim.fn.fnamemodify(vim.g.python3_host_prog, ":h:h")
-			-- 				end
-			-- 				return nil
-			-- 			end,
-			-- 		},
-			-- 	},
 			-- 	mix_format = {
 			-- 		command = "mix",
 			-- 		args = { "format", "-" },
-			-- 		stdin = true,
-			-- 	},
-			-- 	ruff = {
-			-- 		command = "ruff",
-			-- 		args = { "format", "--line-length", "88", "-" },
 			-- 		stdin = true,
 			-- 	},
 			-- },
