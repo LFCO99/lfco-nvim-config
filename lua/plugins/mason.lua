@@ -1,0 +1,32 @@
+return {
+	"mason-org/mason.nvim",
+	config = function()
+		require("mason").setup({
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
+				},
+			},
+		})
+		local mason_registry = require("mason-registry")
+		local tools = {
+			-- Lua Related
+			"lua-language-server", -- LSP
+			"stylua", -- Formatter
+
+			-- Python related
+			"pyright", --LSP
+			"ruff", -- Linter
+			"black", -- Formatter
+			"isort", -- Import sorter
+			"debugpy", -- Debugger
+		}
+		for _, tool in ipairs(tools) do
+			if not mason_registry.is_installed(tool) then
+				vim.cmd("MasonInstall " .. tool)
+			end
+		end
+	end,
+}

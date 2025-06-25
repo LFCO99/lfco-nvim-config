@@ -20,7 +20,6 @@ return {
 			},
 		})
 
-		local lspconfig = require("lspconfig")
 		local on_attach = function(_, bufnr)
 			local attach_opts = { silent = true, buffer = bufnr }
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, attach_opts)
@@ -43,13 +42,14 @@ return {
 		capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 		-- Enable the following language servers / little to none specific configuration
-		local servers = {}
+		local servers = { "pyright" }
 		for _, lsp in ipairs(servers) do
-			lspconfig[lsp].setup({
+			vim.lsp.config(lsp, {
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
 		end
+		vim.lsp.enable(servers)
 
 		-- Explicit Lua setup
 		vim.lsp.config("lua_ls", {
