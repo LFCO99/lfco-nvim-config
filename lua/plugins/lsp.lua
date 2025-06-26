@@ -162,14 +162,14 @@ return {
 
 		-- Html-ls setup
 		vim.lsp.config("html-ls", {
-			cmd = { "vscode-html-language-server" },
+			cmd = { "vscode-html-language-server", "--stdio" },
 			filetypes = { "html", "htmldjango" },
 		})
 		vim.lsp.enable("html-ls")
 
 		--Emmet-language-server setup
 		vim.lsp.config("emmet_ls", {
-			cmd = { "emmet-language-server" },
+			cmd = { "emmet-language-server", "--stdio" },
 			filetypes = { "html", "htmldjango", "css" },
 		})
 		vim.lsp.enable("emmet_ls")
@@ -188,7 +188,7 @@ return {
 
 		--Typescript-ls setup
 		vim.lsp.config("ts_ls", {
-			cmd = { "typescript-language-server" },
+			cmd = { "typescript-language-server", "--stdio" },
 			filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 			settings = {
 				css = { validate = true },
