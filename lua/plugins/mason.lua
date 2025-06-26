@@ -19,7 +19,6 @@ return {
 			-- Python related
 			"pyright", --LSP
 			"ruff", -- Linter
-			-- "debugpy", -- Debugger
 
 			-- Web App related
 			"css-lsp",
