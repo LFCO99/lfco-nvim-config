@@ -38,26 +38,17 @@ return {
 			vim.keymap.set("n", "so", require("telescope.builtin").lsp_references, attach_opts)
 		end
 
-		-- nvim-cmp supports additional completion capabilities
+		-- CMP handles the capabilities
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
+		-- Default config for every LSP
 		vim.lsp.config("*", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
 
-		-- Enable the following language servers / little to none specific configuration
-		-- local servers = { "pyright", "ruff" }
-		-- for _, lsp in ipairs(servers) do
-		-- 	vim.lsp.config(lsp, {
-		-- 		on_attach = on_attach,
-		-- 		capabilities = capabilities,
-		-- 	})
-		-- end
-		-- vim.lsp.enable(servers)
-
-		-- Explicit Lua setup
+		-- Lua setup
 		vim.lsp.config("lua_ls", {
 			cmd = { "lua-language-server" },
 			filetypes = { "lua" },
@@ -76,7 +67,9 @@ return {
 		})
 		vim.lsp.enable("lua_ls")
 
-		-- Pyright
+		-- Django root_markers:
+		local djangoRootMarkers = { "pyproject.toml", ".git", "manage.py" }
+		-- Pyright setup
 		local function set_python_path(path)
 			local clients = vim.lsp.get_clients({
 				bufnr = vim.api.nvim_get_current_buf(),
@@ -96,14 +89,7 @@ return {
 		vim.lsp.config("pyright", {
 			cmd = { "pyright-langserver", "--stdio" },
 			filetypes = { "python" },
-			root_markers = {
-				"pyproject.toml",
-				"setup.py",
-				"requirements.txt",
-				"Pipfile",
-				"pyrightconfig.json",
-				".git",
-			},
+			root_markers = djangoRootMarkers,
 			settings = {
 				pyright = {
 					disableOrganizeImports = true,
@@ -111,9 +97,11 @@ return {
 				python = {
 					analysis = {
 						-- ignore = { "*" },
-						-- autoSearchPaths = true,
-						-- useLibraryCodeForTypes = true,
-						diagnosticMode = "openFilesOnly",
+						diagnosticMode = "workspace",
+						typeCheckingMode = "basic",
+						autoSearchPaths = "true",
+						useLibraryCodeForTypes = true,
+						reportMissingTypeStubs = false,
 					},
 				},
 			},
@@ -128,17 +116,16 @@ return {
 		})
 		vim.lsp.enable("pyright")
 
-		-- Ruff
+		-- Ruff setup
 		vim.lsp.config("ruff", {
 			cmd = { "ruff", "server" },
 			filetypes = { "python" },
-			on_attach = on_attach,
+			root_markers = djangoRootMarkers,
 			capabilities = {
 				general = {
 					positionEncodings = { "utf-16" },
 				},
 			},
-			root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" },
 			init_options = {
 				settings = {
 					lint = {
@@ -162,7 +149,7 @@ return {
 					return
 				end
 				if client.name == "ruff" then
-					--Disable hover in favor of Pyright
+					--Disable hover in favor of pyright
 					client.server_capabilities.hoverProvider = false
 				end
 			end,
