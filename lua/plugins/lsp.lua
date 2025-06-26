@@ -96,12 +96,12 @@ return {
 				},
 				python = {
 					analysis = {
-						-- ignore = { "*" },
-						diagnosticMode = "workspace",
-						typeCheckingMode = "basic",
-						autoSearchPaths = "true",
-						useLibraryCodeForTypes = true,
-						reportMissingTypeStubs = false,
+						ignore = { "*" },
+						-- diagnosticMode = "workspace",
+						-- typeCheckingMode = "basic",
+						-- autoSearchPaths = "true",
+						-- useLibraryCodeForTypes = true,
+						-- reportMissingTypeStubs = false,
 					},
 				},
 			},
@@ -131,8 +131,10 @@ return {
 					lint = {
 						enable = true,
 						preview = true,
+						select = { "F", "W", "I", "DJ" }, -- Add E for more Formatting style warnings
 					},
 					format = {
+						enable = true,
 						preview = true,
 					},
 					logLevel = "info",
