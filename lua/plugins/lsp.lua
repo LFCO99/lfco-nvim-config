@@ -42,6 +42,11 @@ return {
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
+		vim.lsp.config("*", {
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
 		-- Enable the following language servers / little to none specific configuration
 		-- local servers = { "pyright", "ruff" }
 		-- for _, lsp in ipairs(servers) do
@@ -57,8 +62,6 @@ return {
 			cmd = { "lua-language-server" },
 			filetypes = { "lua" },
 			root_markers = { ".luarc.json", ".luarc.jsonc", ".git" },
-			on_attach = on_attach,
-			capabilities = capabilities,
 			settings = {
 				Lua = {
 					runtime = {
@@ -73,6 +76,7 @@ return {
 		})
 		vim.lsp.enable("lua_ls")
 
+		-- Pyright
 		local function set_python_path(path)
 			local clients = vim.lsp.get_clients({
 				bufnr = vim.api.nvim_get_current_buf(),
@@ -101,23 +105,20 @@ return {
 				".git",
 			},
 			settings = {
+				pyright = {
+					disableOrganizeImports = true,
+				},
 				python = {
 					analysis = {
-						autoSearchPaths = true,
-						useLibraryCodeForTypes = true,
+						-- ignore = { "*" },
+						-- autoSearchPaths = true,
+						-- useLibraryCodeForTypes = true,
 						diagnosticMode = "openFilesOnly",
 					},
 				},
 			},
 			on_attach = function(client, bufnr)
-				vim.api.nvim_buf_create_user_command(bufnr, "LspPyrightOrganizeImports", function()
-					client:exec_cmd({
-						command = "pyright.organizeimports",
-						arguments = { vim.uri_from_bufnr(bufnr) },
-					})
-				end, {
-					desc = "Organize Imports",
-				})
+				on_attach(client, bufnr)
 				vim.api.nvim_buf_create_user_command(bufnr, "LspPyrightSetPythonPath", set_python_path, {
 					desc = "Reconfigure pyright with the provided python path",
 					nargs = 1,
@@ -127,16 +128,45 @@ return {
 		})
 		vim.lsp.enable("pyright")
 
-		-- Explicitly setup Ruff
+		-- Ruff
 		vim.lsp.config("ruff", {
+			cmd = { "ruff", "server" },
+			filetypes = { "python" },
+			on_attach = on_attach,
+			capabilities = {
+				general = {
+					positionEncodings = { "utf-16" },
+				},
+			},
+			root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" },
 			init_options = {
 				settings = {
-					cmd = { "ruff", "server" },
-					filetypes = { "python" },
-					root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" },
+					lint = {
+						enable = true,
+						preview = true,
+					},
+					format = {
+						preview = true,
+					},
+					logLevel = "info",
 				},
 			},
 		})
 		vim.lsp.enable("ruff")
+
+		vim.api.nvim_create_autocmd("LspAttach", {
+			group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
+			callback = function(args)
+				local client = vim.lsp.get_client_by_id(args.data.client_id)
+				if client == nil then
+					return
+				end
+				if client.name == "ruff" then
+					--Disable hover in favor of Pyright
+					client.server_capabilities.hoverProvider = false
+				end
+			end,
+			desc = "LSP : Disable hover capability from Ruff",
+		})
 	end,
 }

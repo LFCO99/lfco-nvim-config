@@ -1,5 +1,4 @@
 require("lfco")
-
 require("config.lazy")
 -- So far, ensure you have installed the following languages
 -- for this config to work properly:
