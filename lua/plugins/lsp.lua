@@ -157,5 +157,45 @@ return {
 			end,
 			desc = "LSP : Disable hover capability from Ruff",
 		})
+
+		-- WEB DEV ORIENTED LSPs
+
+		-- Html-ls setup
+		vim.lsp.config("html-ls", {
+			cmd = { "vscode-html-language-server" },
+			filetypes = { "html", "htmldjango" },
+		})
+		vim.lsp.enable("html-ls")
+
+		--Emmet-language-server setup
+		vim.lsp.config("emmet_ls", {
+			cmd = { "emmet-language-server" },
+			filetypes = { "html", "htmldjango", "css" },
+		})
+		vim.lsp.enable("emmet_ls")
+
+		--Css-lsp setup
+		vim.lsp.config("cssls", {
+			cmd = { "vscode-css-language-server", "--stdio" },
+			filetypes = { "css", "scss", "less" },
+			settings = {
+				css = { validate = true },
+				scss = { validate = true },
+				less = { validate = true },
+			},
+		})
+		vim.lsp.enable("cssls")
+
+		--Typescript-ls setup
+		vim.lsp.config("ts_ls", {
+			cmd = { "typescript-language-server" },
+			filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+			settings = {
+				css = { validate = true },
+				scss = { validate = true },
+				less = { validate = true },
+			},
+		})
+		vim.lsp.enable("ts_ls")
 	end,
 }

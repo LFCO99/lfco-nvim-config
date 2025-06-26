@@ -4,19 +4,22 @@ return {
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
-				python = {
-					-- To fix auto-fixable lint errors.
-					"ruff_fix",
-					-- To run the Ruff formatter.
-					"ruff_format",
-					-- To organize the imports
-					"ruff_organize_imports",
-				}, -- sort imports, then format with black.
+				-- Nvim config and Lua
 				lua = { "stylua" }, -- format with stylua
+
+				-- Python related
+				python = {
+					"ruff_fix", -- To fix auto-fixable lint errors.
+					"ruff_format", -- To run the Ruff formatter.
+					"ruff_organize_imports", -- To organize the imports
+				},
+
+				--Django Web App Dev related
+				htmldjango = { "djlint" },
+				html = { "prettier" },
+				css = { "prettier" },
+				javascript = { "prettier" },
 				-- java = { "google-java-format" },
-				-- html = { "prettier" },
-				-- css = { "prettier" },
-				-- javascript = { "prettier" },
 				-- elixir = { "mix_format" },
 			},
 			-- 	mix_format = {

@@ -6,6 +6,10 @@ require("config.lazy")
 -- - Elixir, and required dependencies for Phoenix.
 -- >>> DON'T FORGET TO INSTALL ASDF ERLANG, ELIXIR
 -- - Java
+
+-- For python projects,
+-- Install Django and pynvim, the nvim config will take care of the rest.
+
 -- IMPORTANT! For the ELIXIR LSP to work .
 vim.o.completeopt = "menuone,noselect"
 -- Set the colorscheme for NVIM
