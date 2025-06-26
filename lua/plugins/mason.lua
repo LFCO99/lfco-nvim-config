@@ -20,13 +20,16 @@ return {
 			"pyright", --LSP
 			"ruff", -- Linter
 
-			-- Web App related
+			-- Web App related --
+			-- General
 			"css-lsp",
 			"html-lsp",
 			"emmet-language-server",
 			"typescript-language-server", -- Js and Ts lsp
-			"djlint", -- Django linter
 			"prettier", -- Html, css, js formatter
+			-- Django Framework related
+			"django-template-lsp",
+			"djlint", -- Django linter
 		}
 		for _, tool in ipairs(tools) do
 			if not mason_registry.is_installed(tool) then

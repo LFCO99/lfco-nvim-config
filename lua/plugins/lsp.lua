@@ -164,6 +164,7 @@ return {
 		vim.lsp.config("html-ls", {
 			cmd = { "vscode-html-language-server", "--stdio" },
 			filetypes = { "html", "htmldjango" },
+			root_markers = djangoRootMarkers,
 		})
 		vim.lsp.enable("html-ls")
 
@@ -171,6 +172,7 @@ return {
 		vim.lsp.config("emmet_ls", {
 			cmd = { "emmet-language-server", "--stdio" },
 			filetypes = { "html", "htmldjango", "css" },
+			root_markers = djangoRootMarkers,
 		})
 		vim.lsp.enable("emmet_ls")
 
@@ -178,6 +180,7 @@ return {
 		vim.lsp.config("cssls", {
 			cmd = { "vscode-css-language-server", "--stdio" },
 			filetypes = { "css", "scss", "less" },
+			root_markers = djangoRootMarkers,
 			settings = {
 				css = { validate = true },
 				scss = { validate = true },
@@ -190,12 +193,16 @@ return {
 		vim.lsp.config("ts_ls", {
 			cmd = { "typescript-language-server", "--stdio" },
 			filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-			settings = {
-				css = { validate = true },
-				scss = { validate = true },
-				less = { validate = true },
-			},
+			root_markers = djangoRootMarkers,
 		})
 		vim.lsp.enable("ts_ls")
+
+		--Django-template-ls setup
+		vim.lsp.config("djlsp", {
+			cmd = { "djlsp" },
+			filetypes = { "htmldjango" },
+			root_markers = djangoRootMarkers,
+		})
+		vim.lsp.enable("djlsp")
 	end,
 }
