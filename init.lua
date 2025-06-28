@@ -20,3 +20,14 @@ vim.opt.guicursor = "a:blinkon0"
 vim.api.nvim_set_hl(0, "LineNr", { fg = "#3cb371" })
 vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#615f50" })
 vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#615f50" })
+
+-- Django File Detection
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = {
+		"*/templates/*.html", -- Standard Django template path
+		"*/templates/*/*.html", -- App-specific templates (e.g., myapp/templates/myapp/)
+	},
+	callback = function()
+		vim.bo.filetype = "htmldjango"
+	end,
+})

@@ -16,7 +16,7 @@ return {
 
 				--Django Web App Dev related
 				htmldjango = { "djlint" },
-				html = { "prettier" },
+				html = { "djlint" },
 				css = { "prettier" },
 				javascript = { "prettier" },
 				-- java = { "google-java-format" },

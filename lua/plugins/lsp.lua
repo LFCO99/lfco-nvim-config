@@ -68,7 +68,7 @@ return {
 		vim.lsp.enable("lua_ls")
 
 		-- Django root_markers:
-		local djangoRootMarkers = { "pyproject.toml", ".git", "manage.py" }
+		local djangoRootMarkers = { "manage.py", ".git" }
 		-- Pyright setup
 		local function set_python_path(path)
 			local clients = vim.lsp.get_clients({
@@ -200,7 +200,7 @@ return {
 		--Django-template-ls setup
 		vim.lsp.config("djlsp", {
 			cmd = { "djlsp" },
-			filetypes = { "htmldjango" },
+			filetypes = { "htmldjango", "html" },
 			root_markers = djangoRootMarkers,
 		})
 		vim.lsp.enable("djlsp")
